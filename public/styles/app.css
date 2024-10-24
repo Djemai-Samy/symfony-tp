@@ -120,8 +120,8 @@ ol {
     cursor: pointer;
 }
 
-.delete-list:hover{
-    scale:1.2;
+.delete-list:hover {
+    scale: 1.2;
     transition: all 0.2s ease-in-out;
 }
 
@@ -129,7 +129,26 @@ ol {
     position: relative;
 }
 
-.invisible-button{
+.invisible-button {
     background-color: transparent;
     border: none;
+}
+
+.finished {
+    color: green
+}
+
+.unfinished {
+    color: red
+}
+
+.tache {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tache button {
+    background-color: none;
+    width: auto;
 }

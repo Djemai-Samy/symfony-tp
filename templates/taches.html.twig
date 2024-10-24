@@ -25,7 +25,14 @@
 
 				<ol>
 					{% for tache in list.getTaches() %}
-						<li>{{tache.getTitle()}}</li>
+						<li class="tache">
+							<span class={{tache.isFinished() ? "finished":"unfinished"}}>
+								{{tache.getTitle()}}
+							</span>
+							<form action={{"/tache/finish/"~tache.getId()}}>
+								<button>Términer</button>
+							</form>
+						</li>
 					{% endfor %}
 				</ol>
 

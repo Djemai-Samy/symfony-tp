@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\ListTaches;
 use App\Entity\Tache;
 use App\Repository\ListTachesRepository;
+use App\Repository\TacheRepository;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -69,11 +70,34 @@ class TachesController extends AbstractController
 
         return $this->redirectToRoute('taches');
     }
+
+    #[Route("/tache/finish/{tache_id}", name: "tache.finish", methods: ["GET"])]
+    function termineTache($tache_id, TacheRepository $repo)
+    {
+
+        // Récuperer la tache depuis la DB en utilisant
+        $tache = $repo->find($tache_id);
+
+        // Verifier si elle existe
+        if (!$tache) {
+            return $this->redirectToRoute('taches');
+        }
+
+        // Toggle: Inverseur de boolean
+        $tache->setIsFinished(!$tache->isFinished());
+
+        // Enregistrer La tache dans la DB
+        $repo->sauvegarder($tache, true);
+
+        return $this->redirectToRoute("taches");
+
+        // rediriger vers la page de todo list
+    }
 }
 
 // Entity: Representation De la table de la DB
 // Repository:Méthodes qui Permettent d'interagir avec la BD
 
 // Exercice:
-// 1. Afficher les tache non términée en rouge, et le tache terminée en vert.
+// 1. Afficher les taches non términées en rouge, et les taches terminées en vert.
 // 2. Ajouter un bouton pour terminée/ou remettre une tache.
