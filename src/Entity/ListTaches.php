@@ -21,7 +21,7 @@ class ListTaches
     #[ORM\Column]
     private DateTime $date;
 
-    #[ORM\OneToMany(targetEntity: Tache::class, mappedBy: "listTache", cascade: ['persist'])]
+    #[ORM\OneToMany(targetEntity: Tache::class, mappedBy: "listTache", cascade: ['persist', 'remove'])]
     private $taches;
 
 
@@ -74,3 +74,4 @@ class ListTaches
         return $this;
     }
 }
+

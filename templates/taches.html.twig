@@ -14,6 +14,15 @@
 			<div class="list-card">
 				<h3>{{list.getTitle()}}</h3>
 
+				<form action={{"/taches/delete/"~list.getId()}}>
+					<button class="invisible-button">
+						<svg class="delete-list" width="512" height="512" viewbox="0 0 512 512" fill="none">
+							<rect x="37" y="122.07" width="120.308" height="500.03" rx="15" transform="rotate(-45 37 122.07)"/>
+							<rect x="390.578" y="37" width="120.308" height="500.03" rx="15" transform="rotate(45 390.578 37)"/>
+						</svg>
+					</button>
+				</form>
+
 				<ol>
 					{% for tache in list.getTaches() %}
 						<li>{{tache.getTitle()}}</li>
@@ -28,3 +37,5 @@
 		{% endfor %}
 	</section>
 {% endblock %}
+
+{# SVG: Scalable Vector Graphic #}

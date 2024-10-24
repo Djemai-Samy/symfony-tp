@@ -24,4 +24,10 @@ class ListTachesRepository extends ServiceEntityRepository
         }
         return $nouvelleListe;
     }
+
+    function supprimer(ListTaches $listTache)
+    {
+        $this->getEntityManager()->remove($listTache);
+        $this->getEntityManager()->flush();
+    }
 }

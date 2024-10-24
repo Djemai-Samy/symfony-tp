@@ -58,7 +58,22 @@ class TachesController extends AbstractController
 
         return $this->redirectToRoute('taches');
     }
+
+    #[Route("/taches/delete/{list_id}", name: "tache.delete", methods: ["GET"])]
+    function supprimerTaches($list_id, ListTachesRepository $repo)
+    {
+
+        $listTache = $repo->find($list_id);
+
+        $repo->supprimer($listTache);
+
+        return $this->redirectToRoute('taches');
+    }
 }
 
 // Entity: Representation De la table de la DB
 // Repository:Méthodes qui Permettent d'interagir avec la BD
+
+// Exercice:
+// 1. Afficher les tache non términée en rouge, et le tache terminée en vert.
+// 2. Ajouter un bouton pour terminée/ou remettre une tache.
