@@ -89,9 +89,9 @@ class TachesController extends AbstractController
         // Enregistrer La tache dans la DB
         $repo->sauvegarder($tache, true);
 
+        // rediriger vers la page de todo list
         return $this->redirectToRoute("taches");
 
-        // rediriger vers la page de todo list
     }
 }
 
